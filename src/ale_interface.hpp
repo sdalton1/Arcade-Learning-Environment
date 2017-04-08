@@ -99,7 +99,7 @@ public:
   int getFrameNumber();
 
   // The remaining number of lives.
-  const int lives();
+  int lives();
 
   // Returns the frame number since the start of the current episode
   int getEpisodeFrameNumber() const;
@@ -150,20 +150,20 @@ public:
   ScreenExporter *createScreenExporter(const std::string &path) const;
 
  public:
-  std::auto_ptr<OSystem> theOSystem;
-  std::auto_ptr<Settings> theSettings;
-  std::auto_ptr<RomSettings> romSettings;
-  std::auto_ptr<StellaEnvironment> environment;
+  std::unique_ptr<OSystem> theOSystem;
+  std::unique_ptr<Settings> theSettings;
+  std::unique_ptr<RomSettings> romSettings;
+  std::unique_ptr<StellaEnvironment> environment;
   int max_num_frames; // Maximum number of frames for each episode
 
  public:
   // Display ALE welcome message
   static std::string welcomeMessage();
   static void disableBufferedIO();
-  static void createOSystem(std::auto_ptr<OSystem> &theOSystem,
-                            std::auto_ptr<Settings> &theSettings);
+  static void createOSystem(std::unique_ptr<OSystem> &theOSystem,
+                            std::unique_ptr<Settings> &theSettings);
   static void loadSettings(const std::string& romfile,
-                           std::auto_ptr<OSystem> &theOSystem);
+                           std::unique_ptr<OSystem> &theOSystem);
 };
 
 #endif

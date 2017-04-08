@@ -61,10 +61,10 @@ class ALEState {
     void resetEpisodeFrameNumber();
     
     //Get the frames executed so far
-    const int getFrameNumber() const { return m_frame_number;   }
+    int getFrameNumber() const { return m_frame_number;   }
 
     //Get the number of frames executed this episode.
-    const int getEpisodeFrameNumber() const { return m_episode_frame_number; }
+    int getEpisodeFrameNumber() const { return m_episode_frame_number; }
 
     std::string serialize();
 

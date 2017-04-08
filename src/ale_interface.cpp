@@ -52,8 +52,8 @@ void ALEInterface::disableBufferedIO() {
   cout.sync_with_stdio();
 }
 
-void ALEInterface::createOSystem(std::auto_ptr<OSystem> &theOSystem,
-                          std::auto_ptr<Settings> &theSettings) {
+void ALEInterface::createOSystem(std::unique_ptr<OSystem> &theOSystem,
+                          std::unique_ptr<Settings> &theSettings) {
 #if (defined(WIN32) || defined(__MINGW32__))
   theOSystem.reset(new OSystemWin32());
   theSettings.reset(new SettingsWin32(theOSystem.get()));
@@ -66,7 +66,7 @@ void ALEInterface::createOSystem(std::auto_ptr<OSystem> &theOSystem,
 }
 
 void ALEInterface::loadSettings(const string& romfile,
-                                std::auto_ptr<OSystem> &theOSystem) {
+                                std::unique_ptr<OSystem> &theOSystem) {
   // Load the configuration from a config file (passed on the command
   //  line), if provided
   string configFile = theOSystem->settings().getString("config", false);
@@ -193,7 +193,7 @@ bool ALEInterface::game_over() const {
 }
 
 // The remaining number of lives.
-const int ALEInterface::lives() {
+int ALEInterface::lives() {
   if (!romSettings.get()){
     throw std::runtime_error("ROM not set");
   }
@@ -294,7 +294,7 @@ ALEState ALEInterface::cloneState() {
 }
 
 void ALEInterface::restoreState(const ALEState& state) {
-  return environment->restoreState(state);
+  environment->restoreState(state);
 }
 
 ALEState ALEInterface::cloneSystemState() {
@@ -302,7 +302,7 @@ ALEState ALEInterface::cloneSystemState() {
 }
 
 void ALEInterface::restoreSystemState(const ALEState& state) {
-  return environment->restoreSystemState(state);
+  environment->restoreSystemState(state);
 }
 
 void ALEInterface::saveScreenPNG(const string& filename) {

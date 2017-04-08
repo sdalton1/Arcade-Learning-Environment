@@ -96,7 +96,7 @@ class Controller
     /**
       Returns the type of this controller.
     */
-    const Type type();
+    Type type();
 
     /**
       Inform this controller about the current System.

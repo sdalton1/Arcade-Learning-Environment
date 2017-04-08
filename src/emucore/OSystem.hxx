@@ -223,8 +223,8 @@ class OSystem
     /**
       Get the maximum dimensions of a window for the video hardware.
     */
-    const uInt32 desktopWidth() const  { return myDesktopWidth; }
-    const uInt32 desktopHeight() const { return myDesktopHeight; }
+    uInt32 desktopWidth() const  { return myDesktopWidth; }
+    uInt32 desktopHeight() const { return myDesktopHeight; }
 
     /**
       Get the supported fullscreen resolutions for the video hardware.

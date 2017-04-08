@@ -33,7 +33,7 @@ Controller::~Controller()
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-const Controller::Type Controller::type()
+Controller::Type Controller::type()
 {
   return myType;
 }
