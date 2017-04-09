@@ -73,14 +73,14 @@ uInt32 ColourPalette::getRGB(int val) const
 
 void ColourPalette::applyPaletteRGB(uInt8* dst_buffer, uInt8 *src_buffer, size_t src_size)
 {
+    assert(dst_buffer != nullptr);
     uInt8 *p = src_buffer;
-    uInt8 *q = dst_buffer;
 
-    for(size_t i = 0; i < src_size; i++, p++){
+    for(size_t i = 0; i < src_size * 3; i += 3, p++){
         int rgb = m_palette[*p];
-        *q = (unsigned char) ((rgb >> 16));  q++;    // r
-        *q = (unsigned char) ((rgb >>  8));  q++;    // g
-        *q = (unsigned char) ((rgb >>  0));  q++;    // b
+        dst_buffer[i+0] = (unsigned char) ((rgb >> 16));    // r
+        dst_buffer[i+1] = (unsigned char) ((rgb >>  8));    // g
+        dst_buffer[i+2] = (unsigned char) ((rgb >>  0));    // b
     }
 }
 
